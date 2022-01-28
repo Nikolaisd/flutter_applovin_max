@@ -7,20 +7,29 @@ var globalMethodChannel: FlutterMethodChannel?
 public class SwiftFlutterApplovinMaxPlugin:  NSObject, FlutterPlugin {
     private var rewardMax = ALMAXReward();
     private var interMax = ALMAXInterstitial();
+    private var setupMax = ALMAXSetup();
 
     public static func register(with registrar: FlutterPluginRegistrar) {
         globalMethodChannel = FlutterMethodChannel(name: "flutter_applovin_max", binaryMessenger: registrar.messenger())
         let instance = SwiftFlutterApplovinMaxPlugin()
         registrar.addMethodCallDelegate(instance, channel: globalMethodChannel!)
         ALSdk.shared()!.mediationProvider = ALMediationProviderMAX
+        ALSdk.shared()!.userIdentifier = "USER_ID"
         ALSdk.shared()!.initializeSdk(completionHandler: { configuration in
             // AppLovin SDK is initialized, start loading ads now or later if ad gate is reached
         })
+       
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         /*Reward*/
+        case "Privacy":
+            setupMax.privacyData(call)
+            result(true)
+        case "Debugger":
+            setupMax.openDebugger()
+            result(true)
         case "InitRewardAd":
             rewardMax.initRewardedApplovin(call)
             result(true)

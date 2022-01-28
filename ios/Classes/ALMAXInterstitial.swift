@@ -9,6 +9,10 @@ class ALMAXInterstitial:  NSObject, MAAdViewAdDelegate {
     public var Ad: MAInterstitialAd?
     private var retryAttempt = 0.0
 
+    func openDebugger(_ call: FlutterMethodCall) {
+        ALSdk.shared()!.showMediationDebugger()
+    }
+
     func initInterApplovin(_ call: FlutterMethodCall) {
        if let args = call.arguments as? Dictionary<String, Any>,
         let unitId = args["UnitId"] as? String {
