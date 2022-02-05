@@ -14,7 +14,6 @@ public class SwiftFlutterApplovinMaxPlugin:  NSObject, FlutterPlugin {
         let instance = SwiftFlutterApplovinMaxPlugin()
         registrar.addMethodCallDelegate(instance, channel: globalMethodChannel!)
         ALSdk.shared()!.mediationProvider = ALMediationProviderMAX
-        ALSdk.shared()!.userIdentifier = "USER_ID"
         ALSdk.shared()!.initializeSdk(completionHandler: { configuration in
             // AppLovin SDK is initialized, start loading ads now or later if ad gate is reached
         })
@@ -24,6 +23,8 @@ public class SwiftFlutterApplovinMaxPlugin:  NSObject, FlutterPlugin {
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
         /*Reward*/
+        case "UserId":
+            setupMax.setUserID(call)
         case "Privacy":
             setupMax.privacyData(call)
             result(true)

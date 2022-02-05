@@ -12,6 +12,13 @@ class ALMAXSetup: NSObject {
        }
     }
 
+    func setUserID(_ call: FlutterMethodCall) {
+        if let args = call.arguments as? Dictionary<String, Any>,
+        let userid = args["userid"] as? String {
+            ALSdk.shared()!.userIdentifier = userid
+        }
+    }
+
     func openDebugger() {
         ALSdk.shared()!.showMediationDebugger()
     }

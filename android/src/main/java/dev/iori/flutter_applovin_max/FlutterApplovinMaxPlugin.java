@@ -81,6 +81,12 @@ public class FlutterApplovinMaxPlugin implements FlutterPlugin, MethodCallHandle
                         }
                     });
                     break;
+                case "Debugger":
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                case "Privacy":
+                    // AppLovinPrivacySettings.setHasUserConsent( true, context );
+                    // AppLovinPrivacySettings.setIsAgeRestrictedUser( false, context );
+                    break;
                 case "InitRewardAd":
                     String unitId = call.argument("UnitId").toString();
                     instanceReward.Init(unitId);

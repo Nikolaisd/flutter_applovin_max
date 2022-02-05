@@ -16,6 +16,12 @@ A new Flutter plugin.
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'AppLovinSDK'
+  s.dependency 'AppLovinMediationAdColonyAdapter'
+  s.dependency 'AppLovinMediationChartboostAdapter'
+  s.dependency 'AppLovinMediationFacebookAdapter'
+  s.dependency 'AppLovinMediationGoogleAdapter'
+  s.dependency 'AppLovinMediationTapjoyAdapter'
+  s.dependency 'AppLovinMediationUnityAdsAdapter'
   s.static_framework = true
   s.platform = :ios, '9.0'
   s.swift_version = '5.0'

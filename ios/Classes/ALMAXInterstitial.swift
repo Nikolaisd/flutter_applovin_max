@@ -22,7 +22,13 @@ class ALMAXInterstitial:  NSObject, MAAdViewAdDelegate {
             Ad?.load()
        }
     }
-   
+
+
+   func didPayRevenue(for ad: MAAd) {
+        let revenue = ad.revenue
+        globalMethodChannel?.invokeMethod("AdRevenue", arguments: revenue)
+    }
+
     func didLoad(_ ad: MAAd)
     {
         retryAttempt = 0

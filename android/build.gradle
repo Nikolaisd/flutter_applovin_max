@@ -23,7 +23,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 16
@@ -35,4 +35,11 @@ android {
 
 dependencies {
     implementation 'com.applovin:applovin-sdk:+'
+    implementation 'com.applovin.mediation:chartboost-adapter:+'
+    implementation 'com.google.android.gms:play-services-base:16.1.0'
+    implementation 'com.applovin.mediation:facebook-adapter:+'
+    implementation 'com.android.support:recyclerview-v7:28.+'
+    implementation 'com.android.support:appcompat-v7:28.+'
+    implementation 'com.applovin.mediation:google-adapter:+'
+    implementation 'com.applovin.mediation:unityads-adapter:+'
 }

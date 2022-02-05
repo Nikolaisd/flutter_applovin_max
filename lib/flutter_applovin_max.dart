@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 enum AppLovinAdListener {
   adLoaded,
+  adRevenue,
   adLoadFailed,
   adDisplayed,
   adHidden,
@@ -16,7 +17,7 @@ enum AppLovinAdListener {
   onUserRewarded
 }
 
-typedef AppLovinListener = Function(AppLovinAdListener? listener);
+typedef AppLovinListener = Function(AppLovinAdListener? listener, dynamic args);
 
 class FlutterApplovinMax {
   FlutterApplovinMax._();
@@ -25,6 +26,7 @@ class FlutterApplovinMax {
   static final Map<String, AppLovinAdListener> appLovinAdListener =
       <String, AppLovinAdListener>{
     'AdLoaded': AppLovinAdListener.adLoaded,
+    'AdRevenue': AppLovinAdListener.adRevenue,
     'AdLoadFailed': AppLovinAdListener.adLoadFailed,
     'AdDisplayed': AppLovinAdListener.adDisplayed,
     'AdHidden': AppLovinAdListener.adHidden,
@@ -83,6 +85,14 @@ class FlutterApplovinMax {
     }
   }
 
+  static Future<void> setUserId(String userid) async {
+    try {
+      _channel.invokeMethod<void>('UserId');
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   static Future<void> setPrivacy(
       {bool isAgeRestricted = true, bool hasGDPRConsent = false}) async {
     try {
@@ -111,6 +121,6 @@ class FlutterApplovinMax {
 
   static Future<void> handleMethod(
       MethodCall call, AppLovinListener listener) async {
-    listener(appLovinAdListener[call.method]);
+    listener(appLovinAdListener[call.method], call.arguments);
   }
 }

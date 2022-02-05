@@ -14,6 +14,11 @@ class ALMAXReward:  NSObject, MARewardedAdDelegate {
             Ad?.load()
        }
     }
+
+    public func didPayRevenue(for ad: MAAd) {
+        let revenue = ad.revenue
+        globalMethodChannel?.invokeMethod("AdRevenue", arguments: revenue)
+    }
     
     public func didStartRewardedVideo(for ad: MAAd) {
         globalMethodChannel?.invokeMethod("RewardedVideoStarted", arguments: nil)

@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  void listener(AppLovinAdListener event) {
+  void listener(AppLovinAdListener event, dynamic args) {
     print(event);
     if (event == AppLovinAdListener.onUserRewarded) {
       print('👍get reward');
@@ -68,6 +68,13 @@ class _MyAppState extends State<MyApp> {
                     isAgeRestricted: false, hasGDPRConsent: true);
               },
               child: const Text('Set Privacy Content'),
+            ),
+            const Spacer(),
+            TextButton(
+              onPressed: () async {
+                FlutterApplovinMax.setUserId('auseruid');
+              },
+              child: const Text('Set UserID'),
             ),
             const Spacer(),
             TextButton(
